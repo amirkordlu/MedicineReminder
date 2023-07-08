@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.*
@@ -22,8 +23,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.amk.drugreminder.ui.theme.DrugReminderTheme
-import com.amk.drugreminder.ui.theme.titleLarge
+import com.amk.drugreminder.ui.theme.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,8 +53,9 @@ fun MainScreen() {
         floatingActionButton = { FAB() }
     ) {
         TopBar()
-    }
 
+        Cards()
+    }
 }
 
 
@@ -75,12 +76,95 @@ fun TopBar() {
             textAlign = TextAlign.Right,
             modifier = Modifier
                 .wrapContentSize(align = Alignment.TopEnd)
-                .padding(top = 30.dp, end = 24.dp),
+                .padding(top = 30.dp, end = 28.dp),
             style = titleLarge,
             fontSize = 30.sp,
             color = Color.White,
             lineHeight = 36.sp
         )
+    }
+}
+
+@Composable
+fun Cards() {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 34.dp, end = 34.dp, top = 170.dp),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+
+        Surface(
+            modifier = Modifier
+                .size(150.dp, 140.dp),
+            color = GreenLight,
+            shape = RoundedCornerShape(22.dp)
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.img_circle),
+                contentDescription = null,
+                alignment = Alignment.TopEnd,
+                modifier = Modifier.size(4.dp)
+            )
+
+            Row(
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                modifier = Modifier.padding(top = 18.dp)
+            ) {
+
+                Text(
+                    text = "ضربان قلب",
+                    style = titleLarge,
+                    fontSize = 14.sp,
+                    color = BlueDark,
+                    lineHeight = 36.sp
+                )
+
+                Image(
+                    painter = painterResource(id = R.drawable.ic_heartbeat),
+                    contentDescription = null
+                )
+
+            }
+
+        }
+
+        Surface(
+            modifier = Modifier
+                .size(150.dp, 140.dp),
+            color = YellowLight,
+            shape = RoundedCornerShape(22.dp)
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.img_circle),
+                contentDescription = null,
+                alignment = Alignment.TopEnd,
+                modifier = Modifier.size(4.dp)
+            )
+
+            Row(
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                modifier = Modifier
+                    .size(40.dp)
+                    .padding(top = 18.dp, start = 10.dp, end = 10.dp)
+            ) {
+
+                Text(
+                    text = "فشار خون",
+                    style = titleLarge,
+                    fontSize = 14.sp,
+                    color = BlueDark,
+                    lineHeight = 36.sp
+                )
+
+                Image(
+                    painter = painterResource(id = R.drawable.ic_blood),
+                    contentDescription = null
+                )
+
+            }
+
+        }
     }
 }
 
